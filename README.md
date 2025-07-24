@@ -1,176 +1,218 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 
-Bookwise API
-Welcome to the Bookwise API documentation! This API provides a robust set of endpoints for managing books, user authentication, and book reviews.
+-----
 
-Base URL
-The base URL for all API endpoints is: http://localhost:8000/api/v1
+# Bookwise API
 
-Authentication
-All authenticated endpoints require a Bearer Token in the Authorization header. You can obtain this token by registering and logging in.
+Welcome to the **Bookwise API** documentation\! This API provides a robust set of endpoints for managing books, user authentication, and book reviews.
 
-Authentication API Endpoints
-1. Register a New User
-Endpoint: /register
+## Base URL
 
-Method: POST
+The base URL for all API endpoints is: `http://localhost:8000/api/v1`
 
-Description: Registers a new user account.
+## Authentication
 
-Request Body (JSON):
+All **authenticated endpoints** require a **Bearer Token** in the `Authorization` header. You can obtain this token by registering and logging in.
 
-{
-  "name": "Abhi Shinde",
-  "email": "abhi@example.com",
-  "password": "password123",
-  "password_confirmation": "password123"
-}
+-----
 
-2. User Login
-Endpoint: /login
+## Authentication API Endpoints
 
-Method: POST
+### 1\. Register a New User
 
-Description: Authenticates a user and returns an access token.
+  * **Endpoint:** `/register`
 
-Request Body (JSON):
+  * **Method:** `POST`
 
-{
-  "email": "abhi@example.com",
-  "password": "password123"
-}
+  * **Description:** Registers a new user account.
 
-3. User Logout
-Endpoint: /logout
+  * **Request Body (JSON):**
 
-Method: POST
+    ```json
+    {
+      "name": "Abhi Shinde",
+      "email": "abhi@example.com",
+      "password": "password123",
+      "password_confirmation": "password123"
+    }
+    ```
 
-Description: Invalidates the current user's access token.
+### 2\. User Login
 
-Request Headers:
+  * **Endpoint:** `/login`
 
-Authorization: Bearer <your_access_token>
-Accept: application/json
+  * **Method:** `POST`
 
-Book API Endpoints
-1. Create a New Book
-Endpoint: /books
+  * **Description:** Authenticates a user and returns an access token.
 
-Method: POST
+  * **Request Body (JSON):**
 
-Description: Creates a new book entry. Requires authentication.
+    ```json
+    {
+      "email": "abhi@example.com",
+      "password": "password123"
+    }
+    ```
 
-Request Headers:
+### 3\. User Logout
 
-Authorization: Bearer <your_access_token>
-Accept: application/json
+  * **Endpoint:** `/logout`
 
-Request Body (JSON):
+  * **Method:** `POST`
 
-{
-  "title": "Python",
-  "description": "A book about practical approaches to software development and programming best practices by Abhi Shinde"
-}
+  * **Description:** Invalidates the current user's access token.
 
-2. Update a Book
-Endpoint: /books/{id}
+  * **Request Headers:**
 
-Method: PUT
+    ```
+    Authorization: Bearer <your_access_token>
+    Accept: application/json
+    ```
 
-Description: Updates an existing book by its ID. Requires authentication.
+-----
 
-Path Parameters:
+## Book API Endpoints
 
-id: The ID of the book to update (e.g., 1).
+### 1\. Create a New Book
 
-Request Headers:
+  * **Endpoint:** `/books`
 
-Authorization: Bearer <your_access_token>
-Accept: application/vnd.api+json
+  * **Method:** `POST`
 
-Request Body (JSON):
+  * **Description:** Creates a new book entry. Requires authentication.
 
-{
-  "title": "The Pragmatic Programmer",
-  "description": "A book about practical approaches to software development and programming best practices with Mr.Yash Shinde"
-}
+  * **Request Headers:**
 
-3. Get All Books
-Endpoint: /books
+    ```
+    Authorization: Bearer <your_access_token>
+    Accept: application/json
+    ```
 
-Method: GET
+  * **Request Body (JSON):**
 
-Description: Retrieves a list of all available books.
+    ```json
+    {
+      "title": "Python",
+      "description": "A book about practical approaches to software development and programming best practices by Abhi Shinde"
+    }
+    ```
 
-4. Get a Specific Book
-Endpoint: /books/{id}
+### 2\. Update a Book
 
-Method: GET
+  * **Endpoint:** `/books/{id}`
 
-Description: Retrieves details for a specific book by its ID.
+  * **Method:** `PUT`
 
-Path Parameters:
+  * **Description:** Updates an existing book by its ID. Requires authentication.
 
-id: The ID of the book to retrieve (e.g., 3).
+  * **Path Parameters:**
 
-Request Headers (Optional for public access, required if restricted):
+      * `id`: The ID of the book to update (e.g., `1`).
 
-Authorization: Bearer <your_access_token>
-Accept: application/json
+  * **Request Headers:**
 
-Example Response Body (JSON):
+    ```
+    Authorization: Bearer <your_access_token>
+    Accept: application/vnd.api+json
+    ```
 
-{
-  "title": "The Pragmatic Programmer",
-  "description": "A book about practical approaches to software development and programming best practices."
-}
+  * **Request Body (JSON):**
 
-5. Delete a Book
-Endpoint: /books/{id}
+    ```json
+    {
+      "title": "The Pragmatic Programmer",
+      "description": "A book about practical approaches to software development and programming best practices with Mr.Yash Shinde"
+    }
+    ```
 
-Method: DELETE
+### 3\. Get All Books
 
-Description: Deletes a book by its ID. Requires authentication.
+  * **Endpoint:** `/books`
+  * **Method:** `GET`
+  * **Description:** Retrieves a list of all available books.
 
-Path Parameters:
+### 4\. Get a Specific Book
 
-id: The ID of the book to delete (e.g., 2).
+  * **Endpoint:** `/books/{id}`
 
-Request Headers:
+  * **Method:** `GET`
 
-Authorization: Bearer <your_access_token>
+  * **Description:** Retrieves details for a specific book by its ID.
 
-Review API Endpoints
-1. Get All Reviews of a Book
-Endpoint: /books/{book_id}/reviews
+  * **Path Parameters:**
 
-Method: GET
+      * `id`: The ID of the book to retrieve (e.g., `3`).
 
-Description: Retrieves all reviews associated with a specific book.
+  * **Request Headers (Optional for public access, required if restricted):**
 
-Path Parameters:
+    ```
+    Authorization: Bearer <your_access_token>
+    Accept: application/json
+    ```
 
-book_id: The ID of the book whose reviews are to be retrieved (e.g., 1).
+  * **Example Response Body (JSON):**
 
-2. Add Review for a Book
-Endpoint: /books/{book_id}/reviews
+    ```json
+    {
+      "title": "The Pragmatic Programmer",
+      "description": "A book about practical approaches to software development and programming best practices."
+    }
+    ```
 
-Method: POST
+### 5\. Delete a Book
 
-Description: Adds a new review for a specific book. Requires authentication.
+  * **Endpoint:** `/books/{id}`
 
-Path Parameters:
+  * **Method:** `DELETE`
 
-book_id: The ID of the book to add a review for (e.g., 1).
+  * **Description:** Deletes a book by its ID. Requires authentication.
 
-Request Headers:
+  * **Path Parameters:**
 
-Authorization: Bearer <your_access_token>
+      * `id`: The ID of the book to delete (e.g., `2`).
 
-Request Body (JSON):
+  * **Request Headers:**
 
-{
-  "rating": 4,
-  "review_text": "An insightful and well-written book. Highly recommended!"
-}
+    ```
+    Authorization: Bearer <your_access_token>
+    ```
+
+-----
+
+## Review API Endpoints
+
+### 1\. Get All Reviews of a Book
+
+  * **Endpoint:** `/books/{book_id}/reviews`
+  * **Method:** `GET`
+  * **Description:** Retrieves all reviews associated with a specific book.
+  * **Path Parameters:**
+      * `book_id`: The ID of the book whose reviews are to be retrieved (e.g., `1`).
+
+### 2\. Add Review for a Book
+
+  * **Endpoint:** `/books/{book_id}/reviews`
+
+  * **Method:** `POST`
+
+  * **Description:** Adds a new review for a specific book. Requires authentication.
+
+  * **Path Parameters:**
+
+      * `book_id`: The ID of the book to add a review for (e.g., `1`).
+
+  * **Request Headers:**
+
+    ```
+    Authorization: Bearer <your_access_token>
+    ```
+
+  * **Request Body (JSON):**
+
+    ```json
+    {
+      "rating": 4,
+      "review_text": "An insightful and well-written book. Highly recommended!"
+    }
+    ```
